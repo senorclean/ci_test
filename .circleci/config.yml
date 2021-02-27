@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/python:3.6.9-stretch
     steps:
-      - checkout:
+      - checkout
           path: ~/repo/test
       - run:
           name: Install packages
@@ -17,3 +17,30 @@ jobs:
               cd ~/repo/test/build/build
               cmake ../ -DCMAKE_TOOLCHAIN_FILE=cross_compile.cmake
               make
+
+  unit-test:
+    working_directory: ~/gtest
+    docker:
+      - image: circleci/python:3-6-9-stretch
+    steps:
+      - checkout
+          path: ~/repo/test
+      - run:
+          name: Install packages
+          command: 'sudo apt install cmake'
+      - run:
+          name: Setup GoogleTest
+          command: |
+              git clone --depth 1 -b release-1.10.0 https://github.com/google/googletest
+              cd ~/gtest/googletest
+              mkdir build && cd build
+              cmake ../
+              sudo make install
+      - run:
+          name: Build tests
+          command: |
+              cd ~/repo/test/test/build
+              mkdir build && cd build
+              cmake ../
+              make
+
