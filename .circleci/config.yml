@@ -36,10 +36,8 @@ jobs:
               cmake ../
               sudo make install
       - run:
-          name: Build tests
+          name: Run tests
           command: |
-              cd ~/repo/test/test/build
-              mkdir build && cd build
-              cmake ../
-              make
+              cd ~/repo/test/test/build/build
+              ./nrf52832_test.out
 
