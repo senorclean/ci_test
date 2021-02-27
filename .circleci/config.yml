@@ -20,7 +20,7 @@ jobs:
   unit-test:
     working_directory: ~/gtest
     docker:
-      - image: circleci/python:3-6-9-stretch
+      - image: circleci/python:3.6.9-stretch
     steps:
       - checkout:
           path: ~/repo/test
