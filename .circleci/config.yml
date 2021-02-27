@@ -13,6 +13,7 @@ jobs:
       - run:
           name: Build app
           command: |
+              mkdir ~/repo/test/build/build
               cd ~/repo/test/build/build
               cmake ../ -DCMAKE_TOOLCHAIN_FILE=cross_compile.cmake
               make
