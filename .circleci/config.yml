@@ -36,6 +36,13 @@ jobs:
               cmake ../
               sudo make install
       - run:
+          name: Build tests
+          command: |
+              cd ~/repo/test/test/build/
+              mkdir build && cd build
+              cmake ../
+              make
+      - run:
           name: Run tests
           command: |
               cd ~/repo/test/test/build/build
