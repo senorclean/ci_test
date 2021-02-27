@@ -6,11 +6,11 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Install packages
-        command: 'sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi'
+          name: Install packages
+          command: 'sudo apt install gcc-arm-none-eabi binutils-arm-none-eabi'
       - run:
-        name: Build app
-        command: |
-          cd build/build
-          cmake ../ -DCMAKE_TOOLCHAIN_FILE=cross_compile.cmake
-          make
+          name: Build app
+          command: |
+              cd build/build
+              cmake ../ -DCMAKE_TOOLCHAIN_FILE=cross_compile.cmake
+              make
