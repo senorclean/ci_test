@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/python:3.6.9-stretch
     steps:
-      - checkout
+      - checkout:
           path: ~/repo/test
       - run:
           name: Install packages
@@ -17,13 +17,12 @@ jobs:
               cd ~/repo/test/build/build
               cmake ../ -DCMAKE_TOOLCHAIN_FILE=cross_compile.cmake
               make
-
   unit-test:
     working_directory: ~/gtest
     docker:
-      - image: circleci/python:3-6-9-stretch
+      - image: circleci/python:3.6.9-stretch
     steps:
-      - checkout
+      - checkout:
           path: ~/repo/test
       - run:
           name: Install packages
@@ -39,8 +38,20 @@ jobs:
       - run:
           name: Build tests
           command: |
-              cd ~/repo/test/test/build
+              cd ~/repo/test/test/build/
               mkdir build && cd build
               cmake ../
               make
+      - run:
+          name: Run tests
+          command: |
+              cd ~/repo/test/test/build/build
+              ./nrf52832_test.out
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - unit-test
 
