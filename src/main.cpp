@@ -5,5 +5,5 @@ int main() {
 
   Gpio gpio_dev(&gpio_hal);
 
-  gpio_dev.SetPin(0);
+  gpio_dev.PinSet(0);
 }
