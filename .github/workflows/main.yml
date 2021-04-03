@@ -61,7 +61,7 @@ jobs:
       # Builds the application
       - name: Build and run tests
         run: |
-          mkdir $GITHUB_WORKSPACE/gtest/build/build
+          mkdir $GITHUB_WORKSPACE/test/build/build
           cd $GITHUB_WORKSPACE/test/build/build
           cmake .. -DCMAKE_TOOLCHAIN_FILE=cross_compile.cmake
           make -j10
