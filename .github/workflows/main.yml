@@ -34,6 +34,7 @@ jobs:
         run: |
           mkdir $GITHUB_WORKSPACE/test/build/build
           cd $GITHUB_WORKSPACE/test/build/build
-          pwd
+          ls
+          ls ..
           cmake .. -DCMAKE_TOOLCHAIN_FILE=cross_compile.cmake
           make
