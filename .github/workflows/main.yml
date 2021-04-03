@@ -32,8 +32,8 @@ jobs:
       # Builds the application
       - name: Build application
         run: |
-          mkdir $GITHUB_WORKSPACE/test/build/build
-          cd $GITHUB_WORKSPACE/test/build/build
+          mkdir $GITHUB_WORKSPACE/build/build
+          cd $GITHUB_WORKSPACE/build/build
           ls
           cmake .. -DCMAKE_TOOLCHAIN_FILE=cross_compile.cmake
           make
