@@ -12,6 +12,10 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  
+defaults:
+  run:
+    working-directory: ~/repo
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -32,7 +36,7 @@ jobs:
       # Builds the application
       - name: Build application
         run: |
-          mkdir $GITHUB_WORKSPACE/test/build/build
-          cd $GITHUB_WORKSPACE/test/build/build
+          mkdir ~/repo/test/build/build
+          cd ~/repo/test/build/build
           cmake .. -DCMAKE_TOOLCHAIN_FILE=cross_compile.cmake
           make
