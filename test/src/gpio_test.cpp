@@ -37,12 +37,12 @@ TEST_F(GpioTests, AlwaysPasses) {
   gpio_dev->PinSet(0);
 }
 
-TEST_F(GpioTests, AlwaysFails) {
-  // setup
-
-  // expect
-  EXPECT_CALL(*mock_gpio_hal, PinSet(0))
-    .Times(1);
-
-  gpio_dev->PinSet(1);
-}
+// TEST_F(GpioTests, AlwaysFails) {
+//   // setup
+// 
+//   // expect
+//   EXPECT_CALL(*mock_gpio_hal, PinSet(0))
+//     .Times(1);
+// 
+//   gpio_dev->PinSet(1);
+// }
