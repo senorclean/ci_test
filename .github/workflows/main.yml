@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  build_and_test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -37,20 +37,7 @@ jobs:
           cmake .. -DCMAKE_TOOLCHAIN_FILE=cross_compile.cmake
           make -j10
           
-  unit-test:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-
-      # Installs all relevant packages
-      - name: Install packages
-        run: sudo apt install cmake
-        
-      # Installs all relevant packages
+      # Installs GoogleTest framework
       - name: Install GoogleTest
         run: |
           git clone --depth 1 -b release-1.10.0 https://github.com/google/googletest
@@ -70,4 +57,4 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/test/build/build
           ./nrf52832_test.out
-
+        
