@@ -34,6 +34,35 @@ jobs:
         run: |
           mkdir $GITHUB_WORKSPACE/build/build
           cd $GITHUB_WORKSPACE/build/build
-          ls
           cmake .. -DCMAKE_TOOLCHAIN_FILE=cross_compile.cmake
-          make
+          make -j10
+          
+  unit-test:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Installs all relevant packages
+      - name: Install packages
+        run: sudo apt install cmake
+        
+      # Installs all relevant packages
+      - name: Install GoogleTest
+        run: |
+          git clone --depth 1 -b release-1.10.0 https://github.com/google/googletest
+          cd $GITHUB_WORKSPACE/googletest
+          mkdir build && cd build && cmake ..
+          sudo make install
+
+      # Builds the application
+      - name: Build and run tests
+        run: |
+          mkdir $GITHUB_WORKSPACE/gtest/build/build
+          cd $GITHUB_WORKSPACE/test/build/build
+          cmake .. -DCMAKE_TOOLCHAIN_FILE=cross_compile.cmake
+          make -j10
+
