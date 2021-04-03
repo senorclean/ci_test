@@ -61,7 +61,6 @@ jobs:
       # Builds the application
       - name: Build tests
         run: |
-          mkdir $GITHUB_WORKSPACE/test/build/build
           cd $GITHUB_WORKSPACE/test/build/build
           cmake ..
           make -j10
